@@ -4,6 +4,7 @@
  */
 package com.digis.equipo2.Equipo2ControlEscolar.DL;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -15,6 +16,8 @@ import jakarta.persistence.Id;
 public class Alumno {
     @Id
     private int idalumno;
+    @Basic
+    private String Nombre;
     
     
 }
