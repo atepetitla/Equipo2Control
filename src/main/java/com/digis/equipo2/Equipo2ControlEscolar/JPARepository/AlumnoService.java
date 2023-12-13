@@ -8,13 +8,17 @@ import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author digis
  */
-@Service
+@Repository
 public class AlumnoService {
-     private final AlumnoRepository alumnoRepository;
+
+    private  AlumnoRepository alumnoRepository;
 
     @Autowired
     public AlumnoService(AlumnoRepository alumnoRepository) {
@@ -25,15 +29,20 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
-    public Alumno obtenerAlumnoPorId(Long id) {
-        return alumnoRepository.findById(id).orElse(null);
+    public Optional<Alumno> obtenerAlumnoPorId(int id) {
+        return alumnoRepository.findById(id);
     }
 
-    public Alumno guardarAlumno(Alumno alumno) {
-        return alumnoRepository.save(alumno);
+    public void guardarAlumno(Alumno alumno) {
+        try {
+            alumnoRepository.save(alumno);
+        } catch (Exception e) {
+            
+        }
+        
     }
 
-    public void eliminarAlumno(Long id) {
+    public void eliminarAlumno(int id) {
         alumnoRepository.deleteById(id);
     }
 }
