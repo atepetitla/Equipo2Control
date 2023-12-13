@@ -15,26 +15,37 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MateriaService {
+
     private MateriaRepository materiarepository;
-    
+
     @Autowired
     public MateriaService(MateriaRepository materiarepository) {
         this.materiarepository = materiarepository;
     }
 
-    public List<Materia> obtenerTodosLosAlumnos() {
+    public List<Materia> obtenerTodosLasMaterias() {
         return materiarepository.findAll();
     }
 
-    public Materia obtenerAlumnoPorId(Long id) {
+    public Materia obtenerMateriaPorId(Long id) {
         return materiarepository.findById(id).orElse(null);
     }
 
-    public Materia guardarAlumno(Materia materia) {
+    public Materia guardarMateria(Materia materia) {
         return materiarepository.save(materia);
     }
 
-    public void eliminarAlumno(Long id) {
+    public void eliminarMateria(Long id) {
         materiarepository.deleteById(id);
+    }
+
+    public Materia actualizarMateria(Long id, Materia actualizarMateria) {
+        return materiarepository.findById(id)
+                .map(materia -> {
+                    materia.setNombre(actualizarMateria.getNombre());
+                    materia.setCosto(actualizarMateria.getCosto());
+                    return materiarepository.save(materia);
+                })
+                .orElse(null);
     }
 }

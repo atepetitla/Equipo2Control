@@ -4,12 +4,13 @@
  */
 package com.digis.equipo2.Equipo2ControlEscolar.JPARepository;
 
+import com.digis.equipo2.Equipo2ControlEscolar.DL.AlumnoMateria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author digis
  */
-public interface AlumnoMateria extends JpaRepository<AlumnoMateria, Long>{
+public interface AlumnoMateriaRepository extends JpaRepository<AlumnoMateria, Long>{
     
 }

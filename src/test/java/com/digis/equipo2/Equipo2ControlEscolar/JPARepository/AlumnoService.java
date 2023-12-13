@@ -8,13 +8,15 @@ import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+
 /**
  *
  * @author digis
  */
 @Service
 public class AlumnoService {
-     private final AlumnoRepository alumnoRepository;
+
+    private final AlumnoRepository alumnoRepository;
 
     @Autowired
     public AlumnoService(AlumnoRepository alumnoRepository) {
@@ -35,5 +37,16 @@ public class AlumnoService {
 
     public void eliminarAlumno(Long id) {
         alumnoRepository.deleteById(id);
+    }
+
+    public Alumno actualizarAlumno(Long id, Alumno alumnoActualizado) {
+        return alumnoRepository.findById(id)
+                .map(alumno -> {
+                    alumno.setNombre(alumnoActualizado.getNombre());
+                    alumno.setApellidopaterno(alumnoActualizado.getApellidopaterno());
+                    alumno.setApellidomaterno(alumnoActualizado.getApellidomaterno());
+                    return alumnoRepository.save(alumno);
+                })
+                .orElse(null); 
     }
 }
