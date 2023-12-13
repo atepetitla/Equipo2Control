@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author digis
  */
-    public interface MateriaRepository extends JpaRepository<Materia, Long> {
+    public interface MateriaRepository extends JpaRepository<Materia, Integer> {
     
 }

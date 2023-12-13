@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AlumnoService {
 
-    private  AlumnoRepository alumnoRepository;
+    private AlumnoRepository alumnoRepository;
 
     @Autowired
     public AlumnoService(AlumnoRepository alumnoRepository) {
@@ -33,15 +34,17 @@ public class AlumnoService {
         return alumnoRepository.findById(id);
     }
 
+    @Transactional
     public void guardarAlumno(Alumno alumno) {
         try {
             alumnoRepository.save(alumno);
         } catch (Exception e) {
-            
+
         }
-        
+
     }
 
+    @Transactional
     public void eliminarAlumno(int id) {
         alumnoRepository.deleteById(id);
     }

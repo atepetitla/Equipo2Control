@@ -6,8 +6,10 @@ package com.digis.equipo2.Equipo2ControlEscolar.JPARepository;
 
 import com.digis.equipo2.Equipo2ControlEscolar.DL.Materia;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -15,26 +17,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MateriaService {
+
     private MateriaRepository materiarepository;
-    
+
     @Autowired
     public MateriaService(MateriaRepository materiarepository) {
         this.materiarepository = materiarepository;
     }
 
-    public List<Materia> obtenerTodosLosAlumnos() {
+    public List<Materia> Getall() {
         return materiarepository.findAll();
     }
 
-    public Materia obtenerAlumnoPorId(Long id) {
-        return materiarepository.findById(id).orElse(null);
+    public Optional<Materia> byid(int id) {
+        return materiarepository.findById(id);
     }
 
-    public Materia guardarAlumno(Materia materia) {
+    @Transactional
+    public Materia guardarMateria(Materia materia) {
         return materiarepository.save(materia);
     }
 
-    public void eliminarAlumno(Long id) {
+    @Transactional
+    public void eliminarMateria(int id) {
         materiarepository.deleteById(id);
     }
 }
