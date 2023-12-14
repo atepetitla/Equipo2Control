@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author digis
  */
-@Repository
+@Service
 public class AlumnoService {
 
     private AlumnoRepository alumnoRepository;
@@ -47,5 +47,12 @@ public class AlumnoService {
     @Transactional
     public void eliminarAlumno(int id) {
         alumnoRepository.deleteById(id);
+    }
+
+    public Optional<Alumno> getbynombre(String Nombre) {
+        return alumnoRepository.findByNombre(Nombre);
+    }
+    public void agregarAlumnoStored(String nombre,String apellidoPaterno,String ApellidoMaterno){
+        alumnoRepository.InsertarAlumno(nombre, apellidoPaterno, ApellidoMaterno);
     }
 }

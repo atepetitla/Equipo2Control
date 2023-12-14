@@ -8,6 +8,7 @@ import com.digis.equipo2.Equipo2ControlEscolar.DL.Materia;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author digis
  */
-@Service
+@Repository
 public class MateriaService {
 
     private MateriaRepository materiarepository;
@@ -41,5 +42,8 @@ public class MateriaService {
     @Transactional
     public void eliminarMateria(int id) {
         materiarepository.deleteById(id);
+    }
+    public Optional<Materia> getbynombre(String nombre){
+       return materiarepository.findByNombre(nombre);
     }
 }

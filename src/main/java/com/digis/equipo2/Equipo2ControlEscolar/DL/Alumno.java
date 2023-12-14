@@ -16,16 +16,27 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Alumno {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idalumno;
     @Basic
-    private String Nombre;
-    private String apellidopaterno ;
-    private String apellidomaterno ;
+    private String nombre;
+    private String apellidopaterno;
+    private String apellidomaterno;
 
     public int getIdalumno() {
         return idalumno;
+    }
+
+    public Alumno() {
+    }
+
+    public Alumno(int idalumno, String nombre, String apellidopaterno, String apellidomaterno) {
+        this.idalumno = idalumno;
+        this.nombre = nombre;
+        this.apellidopaterno = apellidopaterno;
+        this.apellidomaterno = apellidomaterno;
     }
 
     public void setIdalumno(int idalumno) {
@@ -33,11 +44,11 @@ public class Alumno {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public String getApellidopaterno() {
@@ -55,7 +66,5 @@ public class Alumno {
     public void setApellidomaterno(String apellidomaterno) {
         this.apellidomaterno = apellidomaterno;
     }
-  
-    
-    
+
 }

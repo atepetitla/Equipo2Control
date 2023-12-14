@@ -4,15 +4,17 @@
  */
 package com.digis.equipo2.Equipo2ControlEscolar.JPARepository;
 
+import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import com.digis.equipo2.Equipo2ControlEscolar.DL.Materia;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author digis
  */
-    public interface MateriaRepository extends JpaRepository<Materia, Integer> {
+public interface MateriaRepository extends JpaRepository<Materia, Integer> {
 
-    public Object findById(Long id);
-    
+        Optional<Materia> findByNombre(String nombre);
+
 }

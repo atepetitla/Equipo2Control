@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tabla de Alumnos</title>
+        <title>Tabla de Materias</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -25,15 +20,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="container">
             <div style="height: 20px;"></div>
             <div class="text-center">
-                <h2>Tabla de Alumnos</h2>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agregarAlumnoModal">AGREGAR</button>            
+                <h2>Relaciones</h2>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agregarRelacionModal">AGREGAR</button>            
             </div>
             <div style="height: 20px;"></div> 
-            <div class="modal fade" id="agregarAlumnoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="agregarRelacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Alumno</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Una Relacion</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -41,16 +36,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre">
+                                    <label for="alumno">Alumno</label>
+                                    <input type="text" class="form-control" id="alumno" placeholder="Ingrese el nombre del alumno">
                                 </div>
                                 <div class="form-group">
-                                    <label for="apellidoPaterno">Apellido Paterno:</label>
-                                    <input type="text" class="form-control" id="apellidoPaterno" placeholder="Ingrese el apellido paterno">
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellidoMaterno">Apellido Materno:</label>
-                                    <input type="text" class="form-control" id="apellidoMaterno" placeholder="Ingrese el apellido materno">
+                                    <label for="materia">Materia</label>
+                                    <input type="text" class="form-control" id="materia" placeholder="Ingrese la materia">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
@@ -59,11 +50,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
 
-            <div class="modal fade" id="ActualizarAlumnoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="actualizarRelacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Alumno</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Relacion</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -71,16 +62,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" class="form-control" id="actNombre" placeholder="Ingrese el nuevo nombre">
+                                    <label for="alumno">Alumno:</label>
+                                    <input type="text" class="form-control" id="actalumno" placeholder="Ingrese nuevo alumno">
                                 </div>
                                 <div class="form-group">
-                                    <label for="apellidoPaterno">Apellido Paterno:</label>
-                                    <input type="text" class="form-control" id="actApellidoPaterno" placeholder="Ingrese el nuevo apellido paterno">
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellidoMaterno">Apellido Materno:</label>
-                                    <input type="text" class="form-control" id="actApellidoMaterno" placeholder="Ingrese el nuevo apellido materno">
+                                    <label for="materia">Materia:</label>
+                                    <input type="text" class="form-control" id="actmateria" placeholder="Ingrese la nueva materia">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
                             </form>
@@ -94,14 +81,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <tr>
                         <th></th>
                         <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
+                        <th>Costo de la materia</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ActualizarAlumnoModal">Editar</button></td>
-                <td></td>
+                <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizarRelacionModal">Editar</button></td>
                 <td></td>
                 <td></td>
                 <td><button type="button" class="btn btn-danger">Eliminar</button></td>
@@ -113,15 +98,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 </html>
 <script>
     $(document).ready(function () {
-        $("#agregarAlumnoModal").click(function () {
-            $("#agregarAlumnoModal").modal("show");
+        $("#agregarRelacionModal").click(function () {
+            $("#agregarRelacionModal").modal("show");
         });
     });
     $(document).ready(function () {
-        $("#ActualizarAlumnoModal").click(function () {
-            $("#ActualizarAlumnoModal").modal("show");
+        $("#actualizarRelacionModal").click(function () {
+            $("#actualizarRelacionModal").modal("show");
         });
     });
 
 </script>
-

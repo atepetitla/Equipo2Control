@@ -60,6 +60,11 @@ public class AlumnoRest {
         return respo;
     }
 
+    @GetMapping("/i/{nombre}")
+    public Optional<Alumno> obtenerAlumnoPorNombre(@PathVariable String nombre) {
+        return alumnoservice.getbynombre(nombre);
+    }
+
     @PostMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable int id) {
         ResponseEntity respo = null;
@@ -68,6 +73,27 @@ public class AlumnoRest {
             respo = new ResponseEntity(HttpStatus.ACCEPTED);
         } catch (Exception e) {
             respo = new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return respo;
+    }
+
+    @PostMapping("/addStored")
+    public ResponseEntity addStored(@RequestBody Alumno alumno) {
+        ResponseEntity respo = null;
+
+        try {
+            if (alumno.getIdalumno() != 0) {
+                //Actualizar
+                alumnoservice.guardarAlumno(alumno);
+                respo = new ResponseEntity(HttpStatus.ACCEPTED);
+            } else {
+                //Guardar
+                alumnoservice.agregarAlumnoStored(alumno.getNombre(), alumno.getApellidopaterno(), 
+                        alumno.getApellidomaterno());
+                respo = new ResponseEntity(HttpStatus.ACCEPTED);
+            }
+        } catch (Exception e) {
+            respo = new ResponseEntity(HttpStatus.CONFLICT);
         }
         return respo;
     }

@@ -8,14 +8,16 @@ import com.digis.equipo2.Equipo2ControlEscolar.DL.AlumnoMateria;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author digis
  */
+@Repository
 public class AlumnoMateriaService {
 
-    private final AlumnoMateriaRepository alumnoMateriaRepository;
+    private  AlumnoMateriaRepository alumnoMateriaRepository;
 
     @Autowired
     public AlumnoMateriaService(AlumnoMateriaRepository alumnoMateriaRepository) {

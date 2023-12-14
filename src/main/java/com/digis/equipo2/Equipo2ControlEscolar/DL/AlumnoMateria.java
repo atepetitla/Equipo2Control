@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Optional;
 
 /**
  *
@@ -30,12 +31,10 @@ public class AlumnoMateria {
 
     @ManyToOne
     @JoinColumn(name = "idalumno")
-    Alumno alumno;
+    private Alumno alumno;
 
     public AlumnoMateria() {
     }
-    
-    
 
     public AlumnoMateria(int idalumnomateria, Materia materia, Alumno alumno) {
         this.idalumnomateria = idalumnomateria;
@@ -66,8 +65,5 @@ public class AlumnoMateria {
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
-    
-    
-    
-    
+
 }

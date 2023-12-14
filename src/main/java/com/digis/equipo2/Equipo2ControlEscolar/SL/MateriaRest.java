@@ -25,29 +25,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/materiarest")
 public class MateriaRest {
+
     private MateriaService materiaService;
 
     public MateriaRest(MateriaService materiaService) {
         this.materiaService = materiaService;
     }
-    
-    
-    
+
     @GetMapping("/getall")
-    public List<Materia> getall(){
+    public List<Materia> getall() {
         return materiaService.Getall();
     }
+
     @GetMapping("/getbyid/{id}")
-    public Optional<Materia> getbyid(@PathVariable int id){
+    public Optional<Materia> getbyid(@PathVariable int id) {
         return materiaService.byid(id);
     }
-    
+
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody Materia materia) {
         ResponseEntity respo = null;
         try {
             if (materia.getIdmateria() != 0) {
-               materiaService.guardarMateria(materia);
+                materiaService.guardarMateria(materia);
                 respo = new ResponseEntity(HttpStatus.ACCEPTED);
             } else {
                 materiaService.guardarMateria(materia);
@@ -57,6 +57,11 @@ public class MateriaRest {
             respo = new ResponseEntity(HttpStatus.CONFLICT);
         }
         return respo;
+    }
+
+    @GetMapping("/i/{nombre}")
+    public Optional<Materia> obtenerAlumnoPorNombre(@PathVariable String nombre) {
+        return materiaService.getbynombre(nombre);
     }
 
     @PostMapping("/delete/{id}")
@@ -70,5 +75,5 @@ public class MateriaRest {
         }
         return respo;
     }
-    
+
 }
