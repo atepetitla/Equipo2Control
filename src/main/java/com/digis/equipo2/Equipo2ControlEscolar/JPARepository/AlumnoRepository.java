@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
     Optional<Alumno> findByNombre(String nombre);
+    @Procedure(name = "InsertarAlumno")
      void InsertarAlumno (String p_Nombre, String p_ApellidoPaterno, String p_ApellidoMaterno);
     
     @Procedure(name = "ActualizarAlumno")

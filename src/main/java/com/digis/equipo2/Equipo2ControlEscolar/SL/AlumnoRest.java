@@ -77,6 +77,18 @@ public class AlumnoRest {
         return respo;
     }
 
+    @PostMapping("/deleteSP/{id}")
+    public ResponseEntity deleteSP(@PathVariable int id) {
+        ResponseEntity respo = null;
+        try {
+            alumnoservice.eliminarAlumnoStored(id);
+            respo = new ResponseEntity(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            respo = new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return respo;
+    }
+
     @PostMapping("/addStored")
     public ResponseEntity addStored(@RequestBody Alumno alumno) {
         ResponseEntity respo = null;
@@ -84,11 +96,13 @@ public class AlumnoRest {
         try {
             if (alumno.getIdalumno() != 0) {
                 //Actualizar
-                alumnoservice.guardarAlumno(alumno);
+                alumnoservice.actualizarAlumnoStored(alumno.getIdalumno(),
+                        alumno.getNombre(), alumno.getApellidopaterno(),
+                        alumno.getApellidomaterno());
                 respo = new ResponseEntity(HttpStatus.ACCEPTED);
             } else {
                 //Guardar
-               alumnoservice.agregarAlumnoStored(alumno.getNombre(), alumno.getApellidopaterno(), 
+                alumnoservice.agregarAlumnoStored(alumno.getNombre(), alumno.getApellidopaterno(),
                         alumno.getApellidomaterno());
                 respo = new ResponseEntity(HttpStatus.ACCEPTED);
             }

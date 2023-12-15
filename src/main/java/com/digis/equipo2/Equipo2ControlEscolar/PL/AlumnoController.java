@@ -40,7 +40,8 @@ public class AlumnoController {
         );
         List<Alumno> alumnos = response.getBody();
         model.addAttribute("alumnos", alumnos);
-        return "Inicio";
+        model.addAttribute("alumno", new Alumno());
+        return "Alumno";
     }
 
     @GetMapping("/getbyid/{id}")
@@ -53,10 +54,18 @@ public class AlumnoController {
         return "Inicio";
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
         RestTemplate rest = new RestTemplate();
         String url = "http://localhost:8080/alumnorest/delete/" + id;
+        rest.getForObject(url, Alumno.class);
+        return "redirect:/alumno/getall";
+    }
+
+    @GetMapping("/deleteSP/{id}")
+    public String deleteSP(@PathVariable int id) {
+        RestTemplate rest = new RestTemplate();
+        String url = "http://localhost:8080/alumnorest/deleteSP/" + id;
         rest.getForObject(url, Alumno.class);
         return "redirect:/alumno/getall";
     }
@@ -67,9 +76,9 @@ public class AlumnoController {
             RestTemplate rest = new RestTemplate();
             String url = "http://localhost:8080/alumnorest/getbyid/" + id;
             Alumno alumno = rest.getForObject(url, Alumno.class);
-            model.addAttribute("alumnos", alumno);
+            model.addAttribute("alumno", alumno);
         } else {
-            model.addAttribute("alumnos", new Alumno());
+            model.addAttribute("alumno", new Alumno());
         }
         return "Inicio";
     }
@@ -82,11 +91,25 @@ public class AlumnoController {
 
             HttpEntity<Alumno> reques = new HttpEntity<>(alumno);
             rest.postForObject(url, reques, Alumno.class);
-
+            return "redirect:/alumno/getall";
         } catch (Exception e) {
+            return "inicio";
+        }
+    }
+
+    @PostMapping("/form")
+    public String guardarSP(@ModelAttribute("alumno") Alumno alumno) {
+        try {
+            RestTemplate rest = new RestTemplate();
+            String url = "http://localhost:8080/alumnorest/addStored";
+
+            HttpEntity<Alumno> reques = new HttpEntity<>(alumno);
+            rest.postForObject(url, reques, Alumno.class);
+            return "redirect:/alumno/getall";
+        } catch (Exception e) {
+            return "inicio";
         }
 
-        return "redirect:/alumno/getall";
     }
 
 }

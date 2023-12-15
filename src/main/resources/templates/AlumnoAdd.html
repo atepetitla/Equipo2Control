@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <button type="button" onclick="idalumno(1)" class="btn btn-danger">Actualizar</button></td>
+
                 <td></td>
                 <td></td>
                 <td></td>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="modal-body">
                         <form th:action="@{/alumno/form}" th:object="${alumno}" method="POST" >
-                            <input id="idalumno" type="hidden" th:field="*{idalumno}">
+                            <input type="hidden" th:field="*{idalumno}">
                             <div class="form-group">
                                 <label for="nombre">Nombrddsadsae:</label>
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" th:field="*{nombre}" >
@@ -79,15 +79,9 @@
             $("#agregarAlumnoModal").modal("show");
         });
     });
-    function idalumno(i) {
-        $("#idalumno").val(i);
-        $.ajax()
-        $("#agregarAlumnoModal").modal("show");
-    }
 </script>
 <style>
     body {
         background-color: #add8e6; /*color de fondo */
     }
 </style>
-

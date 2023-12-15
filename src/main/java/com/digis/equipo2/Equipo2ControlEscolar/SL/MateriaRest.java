@@ -64,7 +64,7 @@ public class MateriaRest {
         return materiaService.getbynombre(nombre);
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable int id) {
         ResponseEntity respo = null;
         try {

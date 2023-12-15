@@ -29,16 +29,6 @@ public class Alumno {
         return idalumno;
     }
 
-    public Alumno() {
-    }
-
-    public Alumno(int idalumno, String nombre, String apellidopaterno, String apellidomaterno) {
-        this.idalumno = idalumno;
-        this.nombre = nombre;
-        this.apellidopaterno = apellidopaterno;
-        this.apellidomaterno = apellidomaterno;
-    }
-
     public void setIdalumno(int idalumno) {
         this.idalumno = idalumno;
     }
@@ -47,8 +37,8 @@ public class Alumno {
         return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidopaterno() {
@@ -66,5 +56,19 @@ public class Alumno {
     public void setApellidomaterno(String apellidomaterno) {
         this.apellidomaterno = apellidomaterno;
     }
+
+
+
+    public Alumno() {
+    }
+
+    public Alumno(int idalumno, String nombre, String apellidopaterno, String apellidomaterno) {
+        this.idalumno = idalumno;
+        this.nombre = nombre;
+        this.apellidopaterno = apellidopaterno;
+        this.apellidomaterno = apellidomaterno;
+    }
+    
+
 
 }
