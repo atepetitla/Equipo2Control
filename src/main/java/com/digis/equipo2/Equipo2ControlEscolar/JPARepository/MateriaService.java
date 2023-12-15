@@ -46,4 +46,19 @@ public class MateriaService {
     public Optional<Materia> getbynombre(String nombre){
        return materiarepository.findByNombre(nombre);
     }
+    
+    //SP
+    @Transactional
+    public void agregarMateriaSP(String nombre, int costo) {
+        materiarepository.InsertarMateria(nombre, costo);
+    }
+     @Transactional
+    public void actualizarMateriaSP(int idMateria, String nuevoNombre, int nuevoCosto) {
+        materiarepository.ActualizarMateria(idMateria, nuevoNombre, nuevoCosto);
+    }
+    
+    @Transactional
+    public void eliminarMateriaSP(int idMateria) {
+        materiarepository.eliminarMateria(idMateria);
+    }
 }

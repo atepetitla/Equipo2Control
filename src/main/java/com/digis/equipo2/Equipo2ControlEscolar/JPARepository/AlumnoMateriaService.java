@@ -39,6 +39,9 @@ public class AlumnoMateriaService {
     public void eliminarRelacion(int id) {
         alumnoMateriaRepository.deleteById(id);
     }
+    
+    
+    
 
    
 }

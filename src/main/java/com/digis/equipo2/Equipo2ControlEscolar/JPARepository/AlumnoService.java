@@ -55,4 +55,15 @@ public class AlumnoService {
     public void agregarAlumnoStored(String nombre,String apellidoPaterno,String ApellidoMaterno){
         alumnoRepository.InsertarAlumno(nombre, apellidoPaterno, ApellidoMaterno);
     }
+    @Transactional
+    public void actualizarAlumnoStored(int idAlumno, String nuevoNombre, String nuevoApellidoPaterno, String nuevoApellidoMaterno) {
+        alumnoRepository.actualizarAlumno(idAlumno, nuevoNombre, nuevoApellidoPaterno, nuevoApellidoMaterno);
+    }
+    
+    @Transactional
+    public void eliminarAlumnoStored(int idAlumno) {
+        alumnoRepository.eliminarAlumno(idAlumno);
+    }
+    
+    
 }

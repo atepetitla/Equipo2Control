@@ -8,6 +8,8 @@ import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import com.digis.equipo2.Equipo2ControlEscolar.DL.Materia;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -15,6 +17,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface MateriaRepository extends JpaRepository<Materia, Integer> {
 
-        Optional<Materia> findByNombre(String nombre);
+    Optional<Materia> findByNombre(String nombre);
+
+    @Procedure(name = "InsertarMateria")
+    void InsertarMateria(String p_Nombre, int Costo);
+
+    @Procedure(name = "ActualizarMateria")
+    void ActualizarMateria(@Param("p_idmateria") int p_idmateria, @Param("p_NuevoNombre") String p_NuevoNombre, @Param("p_NuevoCosto") int p_NuevoCosto);
+
+    @Procedure(name = "EliminarMateria")
+    void eliminarMateria(@Param("p_idmateria") int p_idmateria);
 
 }
