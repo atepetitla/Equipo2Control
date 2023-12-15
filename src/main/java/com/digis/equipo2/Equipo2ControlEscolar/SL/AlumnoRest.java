@@ -88,7 +88,7 @@ public class AlumnoRest {
                 respo = new ResponseEntity(HttpStatus.ACCEPTED);
             } else {
                 //Guardar
-                alumnoservice.agregarAlumnoStored(alumno.getNombre(), alumno.getApellidopaterno(), 
+               alumnoservice.agregarAlumnoStored(alumno.getNombre(), alumno.getApellidopaterno(), 
                         alumno.getApellidomaterno());
                 respo = new ResponseEntity(HttpStatus.ACCEPTED);
             }
