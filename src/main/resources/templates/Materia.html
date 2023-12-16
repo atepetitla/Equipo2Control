@@ -19,7 +19,8 @@
             <div style="height: 20px;"></div>
             <div class="text-center">
                 <h2>Tabla de Materias</h2>
-                <button type="button" class="btn btn-success" onclick="idalumno(0)">AGREGAR</button>            
+                <button type="button" class="btn btn-success" onclick="idalumno(0)">AGREGAR SP</button>            
+                <button type="button" class="btn btn-success" onclick="idalumnonormal(0)">AGREGAR</button>            
             </div>
             <div style="height: 20px;"></div> 
             <
@@ -29,18 +30,22 @@
             <table class="table" id="tableRandom">
                 <thead class="table-dark">
                     <tr>
-                        <th>Actualizar</th>
+                        <th></th>
+                        <th></th>
                         <th>Nombre</th>
                         <th>Costo de la materia</th>
-                        <th>Eliminar</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="materia : ${materias}" >
-                        <td><button type="button" class="btn btn-success" th:onclick="'idalumno(' + ${materia.idmateria} + ')'">Actualizar</button>   </td>
+                        <td><button type="button" class="btn btn-success" th:onclick="'idalumno(' + ${materia.idmateria} + ')'">Actualizar SP</button>   </td>
+                        <td><button type="button" class="btn btn-success" th:onclick="'idalumnonormal(' + ${materia.idmateria} + ')'">Actualizar</button>   </td>
                         <td th:text="${materia.nombre}"></td>
                         <td th:text="${materia.costo}"></td>
-                        <td><a th:href="@{/materia/delete/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger"></a></td>
+                        <td><a th:href="@{/materia/delete/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger">Normal</a></td>
+                        <td><a th:href="@{/materia/deleteSP/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger">SP</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -100,6 +105,12 @@
                             }
                         });
                     }
+                    function idalumnonormal(i) {
+                        $("#idmateria").val(i);
+                        mostrar(i);
+                        $("#agregarMateriaModal").modal("show");
+                    }
+
 
 
 </script>

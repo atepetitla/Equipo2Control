@@ -76,4 +76,33 @@ public class MateriaRest {
         return respo;
     }
 
+    @GetMapping("/deleteSP/{id}")
+    public ResponseEntity deleteSP(@PathVariable int id) {
+        ResponseEntity respo = null;
+        try {
+            materiaService.eliminarMateriaSP(id);
+            respo = new ResponseEntity(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            respo = new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return respo;
+    }
+
+    @PostMapping("/addSP")
+    public ResponseEntity addSP(@RequestBody Materia materia) {
+        ResponseEntity respo = null;
+        try {
+            if (materia.getIdmateria() != 0) {
+                materiaService.actualizarMateriaSP(materia.getIdmateria(), materia.getNombre(), (int) materia.getCosto());
+                respo = new ResponseEntity(HttpStatus.ACCEPTED);
+            } else {
+                materiaService.agregarMateriaSP(materia.getNombre(), (int) materia.getCosto());
+                respo = new ResponseEntity(HttpStatus.ACCEPTED);
+            }
+        } catch (Exception e) {
+            respo = new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        return respo;
+    }
+
 }

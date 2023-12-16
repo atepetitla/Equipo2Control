@@ -72,18 +72,36 @@ public class AlumnoController {
 
     @GetMapping("/form/{id}")
     public String formulario(@PathVariable int id, Model model) {
+        String regreso;
         if (id != 0) {
             RestTemplate rest = new RestTemplate();
             String url = "http://localhost:8080/alumnorest/getbyid/" + id;
             Alumno alumno = rest.getForObject(url, Alumno.class);
             model.addAttribute("alumno", alumno);
+            regreso="FormAlumno";
         } else {
             model.addAttribute("alumno", new Alumno());
+            regreso="FormAlumno";
         }
-        return "Inicio";
+        return regreso;
+    }
+    @GetMapping("/formnormal/{id}")
+    public String formularionormal(@PathVariable int id, Model model) {
+        String regreso;
+        if (id != 0) {
+            RestTemplate rest = new RestTemplate();
+            String url = "http://localhost:8080/alumnorest/getbyid/" + id;
+            Alumno alumno = rest.getForObject(url, Alumno.class);
+            model.addAttribute("alumno", alumno);
+            regreso="FormAlumno_1";
+        } else {
+            model.addAttribute("alumno", new Alumno());
+            regreso="FormAlumno_1";
+        }
+        return regreso;
     }
 
-    @PostMapping("/form")
+    @PostMapping("/formnormal")
     public String guardar(@ModelAttribute("alumno") Alumno alumno) {
         try {
             RestTemplate rest = new RestTemplate();
@@ -109,7 +127,5 @@ public class AlumnoController {
         } catch (Exception e) {
             return "inicio";
         }
-
     }
-
 }

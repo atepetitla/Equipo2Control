@@ -67,6 +67,18 @@ public class MateriasController {
         }
 
     }
+     @GetMapping("/deleteSP/{id}")
+    public String deleteSP(@PathVariable int id) {
+        try {
+            RestTemplate rest = new RestTemplate();
+            String url = "http://localhost:8080/materiarest/deleteSP/" + id;
+            rest.getForObject(url, Materia.class);
+            return "redirect:/materia/getall";
+        } catch (Exception e) {
+            return "Alumno";
+        }
+
+    }
 
     @GetMapping("/form/{id}")
     public String formulario(@PathVariable int id, Model model) {
@@ -81,11 +93,26 @@ public class MateriasController {
         return "Inicio";
     }
 
-    @PostMapping("/form")
+    @PostMapping("/formnormal")
     public String guardar(@ModelAttribute("materia") Materia materia) {
         try {
             RestTemplate rest = new RestTemplate();
             String url = "http://localhost:8080/materiarest/add";
+
+            HttpEntity<Materia> reques = new HttpEntity<>(materia);
+            rest.postForObject(url, reques, Materia.class);
+            return "redirect:/materia/getall";
+        } catch (Exception e) {
+            return "inicio";
+        }
+
+    }
+
+    @PostMapping("/form")
+    public String guardarSP(@ModelAttribute("materia") Materia materia) {
+        try {
+            RestTemplate rest = new RestTemplate();
+            String url = "http://localhost:8080/materiarest/addSP";
 
             HttpEntity<Materia> reques = new HttpEntity<>(materia);
             rest.postForObject(url, reques, Materia.class);

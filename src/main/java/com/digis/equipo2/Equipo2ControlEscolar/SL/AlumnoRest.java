@@ -65,7 +65,7 @@ public class AlumnoRest {
         return alumnoservice.getbynombre(nombre);
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable int id) {
         ResponseEntity respo = null;
         try {
@@ -77,7 +77,7 @@ public class AlumnoRest {
         return respo;
     }
 
-    @PostMapping("/deleteSP/{id}")
+    @GetMapping("/deleteSP/{id}")
     public ResponseEntity deleteSP(@PathVariable int id) {
         ResponseEntity respo = null;
         try {
