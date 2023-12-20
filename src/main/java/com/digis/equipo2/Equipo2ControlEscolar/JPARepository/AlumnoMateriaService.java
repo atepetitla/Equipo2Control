@@ -9,15 +9,17 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author digis
  */
-@Repository
+@Service
 public class AlumnoMateriaService {
 
-    private  AlumnoMateriaRepository alumnoMateriaRepository;
+    private AlumnoMateriaRepository alumnoMateriaRepository;
 
     @Autowired
     public AlumnoMateriaService(AlumnoMateriaRepository alumnoMateriaRepository) {
@@ -32,16 +34,30 @@ public class AlumnoMateriaService {
         return alumnoMateriaRepository.findById(id);
     }
 
+    @Transactional
     public AlumnoMateria guardarRelacion(AlumnoMateria alumnoMateria) {
         return alumnoMateriaRepository.save(alumnoMateria);
     }
 
+    @Transactional
     public void eliminarRelacion(int id) {
         alumnoMateriaRepository.deleteById(id);
     }
-    
-    
-    
 
-   
+    @Transactional
+    public void guardarRelacionSP(AlumnoMateria alumnoMateria) {
+       
+    }
+
+    @Transactional
+    public void eliminarRelacionsSP(int id) {
+        alumnoMateriaRepository.EliminarRelacion(id);
+    }
+
+    @Transactional
+    public void actualizarSP(AlumnoMateria alumnoMateria) {
+        alumnoMateriaRepository.ActualizarRelacion(alumnoMateria.getIdalumnomateria(),
+                alumnoMateria.getAlumno().getIdalumno(), alumnoMateria.getMateria().getIdmateria());
+    }
+
 }

@@ -50,9 +50,22 @@ public class AlumnoMateriaRest {
         return alumnoMateriaService.obtenerRelaciones();
     }
 
+    @GetMapping("/deleteSP/{id}")
+    public ResponseEntity deleteSP(@PathVariable int id){
+        ResponseEntity respo = null;
+        try {
+            alumnoMateriaService.eliminarRelacionsSP(id);
+            respo = new ResponseEntity(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            respo = new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        return respo;
+    }
+            
     @PostMapping("/add")
+
     public ResponseEntity add(@RequestBody AlumnoMateria alumnoMateria) {
-        
+
         //Requiere que en el body se manden los nombres de la materia y el nombre del alumno para hacer una busqueda por su nombre y asigarlo.
         ResponseEntity respo = null;
         Optional<Alumno> alumnoOptional = alumnoService.getbynombre(alumnoMateria.getAlumno().getNombre());
@@ -71,6 +84,40 @@ public class AlumnoMateriaRest {
                     respo = new ResponseEntity(HttpStatus.ACCEPTED);
                 } else {
                     alumnoMateriaService.guardarRelacion(alumnoMateria);
+                    respo = new ResponseEntity(HttpStatus.ACCEPTED);
+                }
+            } else {
+                // Manejar el caso en el que no se encuentre el alumno o la materia
+                respo = new ResponseEntity("Alumno o materia no encontrados", HttpStatus.NOT_FOUND);
+            }
+
+        } catch (Exception e) {
+            respo = new ResponseEntity("Revisa los datos ingresados", HttpStatus.CONFLICT);
+        }
+        return respo;
+    }
+
+    @PostMapping("/addSP")
+    public ResponseEntity addSP(@RequestBody AlumnoMateria alumnoMateria) {
+
+        //Requiere que en el body se manden los nombres de la materia y el nombre del alumno para hacer una busqueda por su nombre y asigarlo.
+        ResponseEntity respo = null;
+        Optional<Alumno> alumnoOptional = alumnoService.getbynombre(alumnoMateria.getAlumno().getNombre());
+        Optional<Materia> materiaOptional = materiaService.getbynombre(alumnoMateria.getMateria().getNombre());
+
+        try {
+            if (alumnoOptional.isPresent() && materiaOptional.isPresent()) {
+                Alumno alumno = alumnoOptional.get();
+                Materia materia = materiaOptional.get();
+
+                // Resto del código aquí...
+                alumnoMateria.setAlumno(alumno);
+                alumnoMateria.setMateria(materia);
+                if (alumnoMateria.getIdalumnomateria() != 0) {
+                    alumnoMateriaService.actualizarSP(alumnoMateria);
+                    respo = new ResponseEntity(HttpStatus.ACCEPTED);
+                } else {
+                    alumnoMateriaService.guardarRelacionSP(alumnoMateria);
                     respo = new ResponseEntity(HttpStatus.ACCEPTED);
                 }
             } else {

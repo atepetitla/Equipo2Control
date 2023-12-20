@@ -19,8 +19,10 @@
             <div style="height: 20px;"></div>
             <div class="text-center">
                 <h2>Relaciones</h2>
+                <button type="button" class="btn btn-success" onclick="idalumnoSP(0)">AGREGARSP</button>            
                 <button type="button" class="btn btn-success" onclick="idalumno(0)">AGREGAR</button>            
             </div>
+            <br>
 
 
 
@@ -28,17 +30,20 @@
             <table class="table" id="tableRandom">
                 <thead class="table-dark">
                     <tr>
-                        <th>Actualizacion</th>
+                        <th></th>
+                        <th></th>
                         <th>Alumno</th>
                         <th>Materia</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="materia : ${alumnoMaterias}" >
+                        <td><button type="button" class="btn btn-success" th:onclick="'idalumnoSP(' + ${materia.idalumnomateria} + ')'">ActualizarSP</button>   </td>
                         <td><button type="button" class="btn btn-success" th:onclick="'idalumno(' + ${materia.idalumnomateria} + ')'">Actualizar</button>   </td>
                         <td th:text="${materia.materia.nombre}"></td>
                         <td th:text="${materia.alumno.nombre}"></td>
-
+                        <td><a th:href="@{/alumnoMateria/deleteSP/{numeroempleado}(numeroempleado=${materia.idalumnomateria})}" class="btn btn-danger">SP</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -57,7 +62,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/alumnoMateria/form}" th:object="${alumnoMateria}" method="POST">
+
+                    <form th:action="@{/alumnoMateria/formSP}" th:object="${alumnoMateria}" method="POST">
                         <div class="form-group">
                             <input id="idmateria" type="hidden" th:field="*{idalumnomateria}">
                             <label for="alumno">Alumno</label>
