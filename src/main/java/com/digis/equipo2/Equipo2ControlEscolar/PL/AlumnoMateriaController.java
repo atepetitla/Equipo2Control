@@ -31,6 +31,7 @@ public class AlumnoMateriaController {
     public String getall(Model model) {
         RestTemplate rest = new RestTemplate();
         String url = "http://localhost:8080/alumnoMateriaRest/getall";
+        String urlSP = "http://localhost:8080/alumnoMateriaRest/getallSP";
         ResponseEntity<List<AlumnoMateria>> response = rest.exchange(
                 url,
                 HttpMethod.GET,
@@ -38,8 +39,17 @@ public class AlumnoMateriaController {
                 new ParameterizedTypeReference<List<AlumnoMateria>>() {
         }
         );
+          ResponseEntity<List<AlumnoMateria>> responseSP = rest.exchange(
+                urlSP,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AlumnoMateria>>() {
+        }
+        );
         List<AlumnoMateria> materias = response.getBody();
+        List<AlumnoMateria> materiasSP = responseSP.getBody();
         model.addAttribute("alumnoMaterias", materias);
+        model.addAttribute("alumnoMaterias", materiasSP);
         model.addAttribute("alumnoMateria", new AlumnoMateria());
         return "Relacion";
     }

@@ -30,6 +30,11 @@ public class AlumnoMateriaService {
         return alumnoMateriaRepository.findAll();
     }
 
+    @Transactional
+    public List<AlumnoMateria> getallSP() {
+        return alumnoMateriaRepository.GetAllRelacionSP();
+    }
+
     public Optional<AlumnoMateria> obtenerRelacionPorId(int id) {
         return alumnoMateriaRepository.findById(id);
     }
@@ -46,7 +51,7 @@ public class AlumnoMateriaService {
 
     @Transactional
     public void guardarRelacionSP(AlumnoMateria alumnoMateria) {
-       
+
     }
 
     @Transactional

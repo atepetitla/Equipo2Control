@@ -29,6 +29,10 @@ public class MateriaService {
     public List<Materia> Getall() {
         return materiarepository.findAll();
     }
+    @Transactional
+    public List<Materia> getSP() {
+        return materiarepository.GetAllMateriaSP();
+    }
 
     public Optional<Materia> byid(int id) {
         return materiarepository.findById(id);

@@ -4,7 +4,9 @@
  */
 package com.digis.equipo2.Equipo2ControlEscolar.JPARepository;
 
+import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import com.digis.equipo2.Equipo2ControlEscolar.DL.AlumnoMateria;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -16,11 +18,15 @@ import org.springframework.data.repository.query.Param;
 public interface AlumnoMateriaRepository extends JpaRepository<AlumnoMateria, Integer> {
 
     @Procedure(name = "InsertarRelacion")
-    void InsertarRelacion(@Param("p_idalumno") int p_idalumno,@Param("p_idmateria") int p_idmateria);
+    void InsertarRelacion(@Param("p_idalumno") int p_idalumno, @Param("p_idmateria") int p_idmateria);
 
     @Procedure(name = "ActualizarRelacion")
-    void ActualizarRelacion(@Param("p_idalumnomateria") int p_idalumnomateria,@Param("p_idalumno") int p_idalumno, @Param("p_idmateria")int p_idmateria);
+    void ActualizarRelacion(@Param("p_idalumnomateria") int p_idalumnomateria, @Param("p_idalumno") int p_idalumno, @Param("p_idmateria") int p_idmateria);
 
     @Procedure(name = "EliminarRelacion")
     void EliminarRelacion(@Param("p_idalumnomateria") int p_idalumnomateria);
+
+    @Procedure(name = "GetAllRelacionSP", refCursor = true)
+    List<AlumnoMateria> GetAllRelacionSP();
+
 }

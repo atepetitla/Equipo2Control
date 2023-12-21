@@ -48,7 +48,7 @@
                 <button type="button" class="btn btn-success" onclick="idalumnonormal(0)">AGREGAR</button>            
             </div>
             <div style="height: 20px;"></div> 
-            <
+            
 
 
 
@@ -56,25 +56,41 @@
                 <thead class="table-dark">
                     <tr>
                         <th></th>
-                        <th></th>
                         <th>Nombre</th>
                         <th>Costo de la materia</th>
-                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="materia : ${materias}" >
-                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumno(' + ${materia.idmateria} + ')'"><i class="bi bi-pencil-square"></i>  SP</button>   </td>
-
                         <td><button type="button" class="btn btn-warning" th:onclick="'idalumnonormal(' + ${materia.idmateria} + ')'"><i class="bi bi-pencil-square"></i> </button>   </td>
                         <td th:text="${materia.nombre}"></td>
                         <td th:text="${materia.costo}"></td>
                         <td><a th:href="@{/materia/delete/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Tabla con SP</h2>
+            <table class="table table-bordered" id="tableRandom">
+                <thead class="table-dark">
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Costo de la materia</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="materia : ${materiasSP}" >
+                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumno(' + ${materia.idmateria} + ')'"><i class="bi bi-pencil-square"></i>  SP</button>   </td>
+                        <td th:text="${materia.nombre}"></td>
+                        <td th:text="${materia.costo}"></td>
                         <td><a th:href="@{/materia/deleteSP/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i>SP</a></td>
                     </tr>
                 </tbody>
             </table>
+            
         </div>
         <div class="modal fade" id="agregarMateriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

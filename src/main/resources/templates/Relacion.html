@@ -47,14 +47,28 @@
                 <button type="button" class="btn btn-success" onclick="idalumno(0)">AGREGAR</button>            
             </div>
             <br>
-
-
-
-
             <table class="table table-bordered" id="tableRandom">
                 <thead class="table-dark">
                     <tr>
                         <th></th>
+                        <th>Alumno</th>
+                        <th>Materia</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="materia : ${alumnoMaterias}" >
+                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumno(' + ${materia.idalumnomateria} + ')'"><i class="bi bi-pencil-square"></i> </button>   </td>
+                        <td th:text="${materia.materia.nombre}"></td>
+                        <td th:text="${materia.alumno.nombre}"></td>
+                        <td><a th:href="@{/alumnoMateria/deleteSP/{numeroempleado}(numeroempleado=${materia.idalumnomateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Tabla con SP</h2>
+            <table class="table table-bordered" id="tableRandom">
+                <thead class="table-dark">
+                    <tr>
                         <th></th>
                         <th>Alumno</th>
                         <th>Materia</th>
@@ -64,7 +78,6 @@
                 <tbody>
                     <tr th:each="materia : ${alumnoMaterias}" >
                         <td><button type="button" class="btn btn-warning" th:onclick="'idalumnoSP(' + ${materia.idalumnomateria} + ')'"><i class="bi bi-pencil-square"></i>  SP</button>   </td>
-                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumno(' + ${materia.idalumnomateria} + ')'"><i class="bi bi-pencil-square"></i> </button>   </td>
                         <td th:text="${materia.materia.nombre}"></td>
                         <td th:text="${materia.alumno.nombre}"></td>
                         <td><a th:href="@{/alumnoMateria/deleteSP/{numeroempleado}(numeroempleado=${materia.idalumnomateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i>SP</a></td>
@@ -109,6 +122,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
                     function idalumno(i) {
+                        $("#idmateria").val(i);
+                        mostrar(i);
+                        $("#agregarRelacionModal").modal("show");
+                    }
+                     function idalumnoSP(i) {
                         $("#idmateria").val(i);
                         mostrar(i);
                         $("#agregarRelacionModal").modal("show");

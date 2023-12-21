@@ -42,6 +42,10 @@ public class AlumnoRest {
     public List<Alumno> getall() {
         return alumnoservice.obtenerTodosLosAlumnos();
     }
+     @GetMapping("/getallsp")
+    public List<Alumno> getallsp() {
+        return alumnoservice.obtenerTodosLosAlumnosSP();
+    }
 
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody Alumno alumno) {

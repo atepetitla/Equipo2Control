@@ -50,28 +50,19 @@
                 <thead class="table-dark">
                     <tr>
                         <th></th>
-                        <th></th>
                         <th>Nombre</th>
                         <th>Apellido Paterno</th>
                         <th>Apellido Materno</th>
-                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     <tr th:each="alumno:${alumnos}">
                         <td>
-                            <a th:href="@{/alumno/form/{idalumno}(idalumno=${alumno.idalumno})}" class="btn btn-warning">
-                                <i class="bi bi-pencil-square"></i>SP
-                            </a>
-                        </td>
-                        <td>
                             <a th:href="@{/alumno/formnormal/{idalumno}(idalumno=${alumno.idalumno})}" class="btn btn-warning">
                                 <i class="bi bi-pencil-square"></i> 
                             </a>
                         </td>
-
-
                         <td th:text="${alumno.nombre}"></td>
                         <td th:text="${alumno.apellidopaterno}"></td>
                         <td th:text="${alumno.apellidomaterno}"></td>
@@ -79,6 +70,31 @@
                                 (idalumno=${alumno.idalumno})}" class="btn btn-danger">
                                 <i class="bi bi-trash-fill"></i>
                             </a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Tabla con SP</h2>
+
+            <table class="table table-bordered" id="tableRandom">
+                <thead class="table-dark">
+                    <tr>
+                         <th></th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="alumno:${alumnosSP}">
+                        <td>
+                            <a th:href="@{/alumno/form/{idalumno}(idalumno=${alumno.idalumno})}" class="btn btn-warning">
+                                <i class="bi bi-pencil-square"></i>SP
+                            </a>
+                        </td>
+                        <td th:text="${alumno.nombre}"></td>
+                        <td th:text="${alumno.apellidopaterno}"></td>
+                        <td th:text="${alumno.apellidomaterno}"></td>
                         <td> <a th:href="@{/alumno/deleteSP/{idalumno}
                                 (idalumno=${alumno.idalumno})}" class="btn btn-danger">
                                 <i class="bi bi-trash-fill"></i>SP

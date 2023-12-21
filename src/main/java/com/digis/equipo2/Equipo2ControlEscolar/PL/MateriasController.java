@@ -32,6 +32,7 @@ public class MateriasController {
     public String getall(Model model) {
         RestTemplate rest = new RestTemplate();
         String url = "http://localhost:8080/materiarest/getall";
+        String urlSP = "http://localhost:8080/materiarest/getallSP";
         ResponseEntity<List<Materia>> response = rest.exchange(
                 url,
                 HttpMethod.GET,
@@ -39,8 +40,17 @@ public class MateriasController {
                 new ParameterizedTypeReference<List<Materia>>() {
         }
         );
+        ResponseEntity<List<Materia>> responseSP = rest.exchange(
+                urlSP,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Materia>>() {
+        }
+        );
         List<Materia> materias = response.getBody();
+        List<Materia> materiasSP = responseSP.getBody();
         model.addAttribute("materias", materias);
+        model.addAttribute("materiasSP", materiasSP);
         model.addAttribute("materia", new Materia());
         return "Materia";
     }
@@ -67,7 +77,8 @@ public class MateriasController {
         }
 
     }
-     @GetMapping("/deleteSP/{id}")
+
+    @GetMapping("/deleteSP/{id}")
     public String deleteSP(@PathVariable int id) {
         try {
             RestTemplate rest = new RestTemplate();

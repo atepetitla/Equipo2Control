@@ -30,6 +30,11 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
+    @Transactional
+    public List<Alumno> obtenerTodosLosAlumnosSP() {
+        return alumnoRepository.GetAllAlumnoSP();
+    }
+
     public Optional<Alumno> obtenerAlumnoPorId(int id) {
         return alumnoRepository.findById(id);
     }
@@ -52,22 +57,20 @@ public class AlumnoService {
     public Optional<Alumno> getbynombre(String Nombre) {
         return alumnoRepository.findByNombre(Nombre);
     }
-    
-    
-    
+
     @Transactional
-    public void agregarAlumnoStored(String nombre,String apellidoPaterno,String ApellidoMaterno){
+    public void agregarAlumnoStored(String nombre, String apellidoPaterno, String ApellidoMaterno) {
         alumnoRepository.InsertarAlumno(nombre, apellidoPaterno, ApellidoMaterno);
     }
+
     @Transactional
     public void actualizarAlumnoStored(int idAlumno, String nuevoNombre, String nuevoApellidoPaterno, String nuevoApellidoMaterno) {
         alumnoRepository.actualizarAlumno(idAlumno, nuevoNombre, nuevoApellidoPaterno, nuevoApellidoMaterno);
     }
-    
+
     @Transactional
     public void eliminarAlumnoStored(int idAlumno) {
         alumnoRepository.eliminarAlumno(idAlumno);
     }
-    
-    
+
 }

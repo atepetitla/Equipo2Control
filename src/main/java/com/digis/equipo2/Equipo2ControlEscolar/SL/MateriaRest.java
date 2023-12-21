@@ -36,6 +36,10 @@ public class MateriaRest {
     public List<Materia> getall() {
         return materiaService.Getall();
     }
+      @GetMapping("/getallSP")
+    public List<Materia> getallSP() {
+        return materiaService.getSP();
+    }
 
     @GetMapping("/getbyid/{id}")
     public Optional<Materia> getbyid(@PathVariable int id) {

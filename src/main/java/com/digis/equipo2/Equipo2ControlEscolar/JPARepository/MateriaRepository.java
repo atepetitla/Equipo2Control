@@ -6,6 +6,7 @@ package com.digis.equipo2.Equipo2ControlEscolar.JPARepository;
 
 import com.digis.equipo2.Equipo2ControlEscolar.DL.Alumno;
 import com.digis.equipo2.Equipo2ControlEscolar.DL.Materia;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -27,5 +28,8 @@ public interface MateriaRepository extends JpaRepository<Materia, Integer> {
 
     @Procedure(name = "EliminarMateria")
     void eliminarMateria(@Param("p_idmateria") int p_idmateria);
+    
+     @Procedure(name = "GetAllMateriaSP", refCursor = true)
+    List<Materia> GetAllMateriaSP();
 
 }

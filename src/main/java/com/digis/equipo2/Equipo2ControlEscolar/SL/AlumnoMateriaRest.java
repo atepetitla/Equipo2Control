@@ -50,8 +50,13 @@ public class AlumnoMateriaRest {
         return alumnoMateriaService.obtenerRelaciones();
     }
 
+    @GetMapping("/getallSP")
+    public List<AlumnoMateria> getallSP() {
+        return alumnoMateriaService.getallSP();
+    }
+
     @GetMapping("/deleteSP/{id}")
-    public ResponseEntity deleteSP(@PathVariable int id){
+    public ResponseEntity deleteSP(@PathVariable int id) {
         ResponseEntity respo = null;
         try {
             alumnoMateriaService.eliminarRelacionsSP(id);
@@ -61,7 +66,7 @@ public class AlumnoMateriaRest {
         }
         return respo;
     }
-            
+
     @PostMapping("/add")
 
     public ResponseEntity add(@RequestBody AlumnoMateria alumnoMateria) {

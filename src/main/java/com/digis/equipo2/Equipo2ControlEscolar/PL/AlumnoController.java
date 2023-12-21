@@ -31,6 +31,7 @@ public class AlumnoController {
     public String getall(Model model) {
         RestTemplate rest = new RestTemplate();
         String url = "http://localhost:8080/alumnorest/getall";
+        String urlSP = "http://localhost:8080/alumnorest/getallsp";
         ResponseEntity<List<Alumno>> response = rest.exchange(
                 url,
                 HttpMethod.GET,
@@ -38,8 +39,17 @@ public class AlumnoController {
                 new ParameterizedTypeReference<List<Alumno>>() {
         }
         );
+        ResponseEntity<List<Alumno>> responseSP = rest.exchange(
+                urlSP,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Alumno>>() {
+        }
+        );
         List<Alumno> alumnos = response.getBody();
+        List<Alumno> alumnosSP = responseSP.getBody();
         model.addAttribute("alumnos", alumnos);
+        model.addAttribute("alumnosSP", alumnosSP);
         model.addAttribute("alumno", new Alumno());
         return "Alumno";
     }
@@ -78,13 +88,14 @@ public class AlumnoController {
             String url = "http://localhost:8080/alumnorest/getbyid/" + id;
             Alumno alumno = rest.getForObject(url, Alumno.class);
             model.addAttribute("alumno", alumno);
-            regreso="FormAlumno";
+            regreso = "FormAlumno";
         } else {
             model.addAttribute("alumno", new Alumno());
-            regreso="FormAlumno";
+            regreso = "FormAlumno";
         }
         return regreso;
     }
+
     @GetMapping("/formnormal/{id}")
     public String formularionormal(@PathVariable int id, Model model) {
         String regreso;
@@ -93,10 +104,10 @@ public class AlumnoController {
             String url = "http://localhost:8080/alumnorest/getbyid/" + id;
             Alumno alumno = rest.getForObject(url, Alumno.class);
             model.addAttribute("alumno", alumno);
-            regreso="FormAlumno_1";
+            regreso = "FormAlumno_1";
         } else {
             model.addAttribute("alumno", new Alumno());
-            regreso="FormAlumno_1";
+            regreso = "FormAlumno_1";
         }
         return regreso;
     }
