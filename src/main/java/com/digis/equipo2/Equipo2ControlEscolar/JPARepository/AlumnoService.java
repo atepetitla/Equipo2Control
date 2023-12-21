@@ -52,6 +52,9 @@ public class AlumnoService {
     public Optional<Alumno> getbynombre(String Nombre) {
         return alumnoRepository.findByNombre(Nombre);
     }
+    
+    
+    
     @Transactional
     public void agregarAlumnoStored(String nombre,String apellidoPaterno,String ApellidoMaterno){
         alumnoRepository.InsertarAlumno(nombre, apellidoPaterno, ApellidoMaterno);
