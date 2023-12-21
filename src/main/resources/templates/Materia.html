@@ -6,14 +6,39 @@
         <title>Tabla de Materias</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <style>
             body {
-                background-color: #add8e6; /*color de fondo */
+                background-color: #e2f0fb; /*color de fondo */
             }
         </style>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DIGI PRO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/alumno/getall">Tabla de alumnos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/materia/getall">Tabla de materias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/alumnoMateria/getall">Relaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <div class="container">
             <div style="height: 20px;"></div>
@@ -27,7 +52,7 @@
 
 
 
-            <table class="table" id="tableRandom">
+            <table class="table table-bordered" id="tableRandom">
                 <thead class="table-dark">
                     <tr>
                         <th></th>
@@ -40,12 +65,13 @@
                 </thead>
                 <tbody>
                     <tr th:each="materia : ${materias}" >
-                        <td><button type="button" class="btn btn-success" th:onclick="'idalumno(' + ${materia.idmateria} + ')'">Actualizar SP</button>   </td>
-                        <td><button type="button" class="btn btn-success" th:onclick="'idalumnonormal(' + ${materia.idmateria} + ')'">Actualizar</button>   </td>
+                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumno(' + ${materia.idmateria} + ')'"><i class="bi bi-pencil-square"></i>  SP</button>   </td>
+
+                        <td><button type="button" class="btn btn-warning" th:onclick="'idalumnonormal(' + ${materia.idmateria} + ')'"><i class="bi bi-pencil-square"></i> </button>   </td>
                         <td th:text="${materia.nombre}"></td>
                         <td th:text="${materia.costo}"></td>
-                        <td><a th:href="@{/materia/delete/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger">Normal</a></td>
-                        <td><a th:href="@{/materia/deleteSP/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger">SP</a></td>
+                        <td><a th:href="@{/materia/delete/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></td>
+                        <td><a th:href="@{/materia/deleteSP/{numeroempleado}(numeroempleado=${materia.idmateria})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i>SP</a></td>
                     </tr>
                 </tbody>
             </table>
